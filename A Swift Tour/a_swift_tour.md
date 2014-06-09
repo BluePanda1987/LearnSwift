@@ -1,4 +1,4 @@
-####A Swift Tour
+###A Swift Tour
 
 通常建议新语言的第一个程序打印出 Hello World。在SWift中我们写下下面的语句：
 
@@ -58,6 +58,102 @@
 如果类型信息可以被推断你可以使用**[ ]**写一个空数组，用**[:]**写一个空字典。当你为变量设置一个新值或者为函数传参的时候或许会用到它。
 
 	shoppingList = [] // Went shopping and bought everything.
+
+
+#####Control Flow
+
+使用`if`和`switch`作为条件语句，用`for-in`,`for`,`while`, 和 `do-while` 实现循环语句。 判断条件和循环条件可以不用圆括号，但主体语句两侧必须使用花括号。
+
+	let individualScores = [75, 43, 103, 87, 12]
+	
+	var teamScore = 0
+	
+	for	scroe in individualScores {
+	
+		if scroe > 50 {
+			
+			teamScroe += 3		
+		}	
+		else {
+		
+			teamScroe += 1
+		}
+	}
+
+在 if 语句中，条件必须是一个 bool 表达式， 这意味着 if scroe { ... } 这样的语句是错误的， 因为它并没有隐含着 scroe 与 0 的比较。
+
+你可以联用 **if** 和 **let** 操作可空的值。这些值是**可选值**它们要么一个值，要么用nil表示。用一个 `?`符号在变量符号之后进行标记以表示该值是**可选值**。 
+
+	
+	var optionalValue:String? = "Hello"
+	optionalValue == nil;
+
+	var optionalName:String? = "Johnny Appleessed"
+	var greeting = "Hello"
+
+	if let name = optionalName {
+    
+    	greeting = "Hello, \(name)."
+	}
+	else {
+    
+    	greeting = "Hello somebody."
+	}
+
+如果可选值是nil，条件为false 在花括号中的代码将被跳过。如果不是空的可选值的值将会使得 let之后的常量可用，并赋值给它， 被赋值的常量将在代码块中变得可用。（将上面的代码更改，在else中试图使用 name 变量）
+
+	if let name = optionalName {
+    
+    	greeting = "Hello, \(name)."
+	}
+	else {
+	
+    	greeting = "Hello somebody.\(name)"
+	}
+在第二行代码中你将得到未定义错误：error: use of unresolved identifier 'name'
+    greeting = "Hello somebody.\(name)"
+
+Switch语句支持各种数据类型，各种各样的比较操作。数据类型不再限制于整型变量，比较操作也不仅仅只是测试相等。
+
+	let vegetable = "red pepper"
+
+	switch vegetable{
+    
+    	case "celery":
+        	let vegetableComment = "Add some raisins and make ants on a log."
+    	case "cucumber", "watercress":
+        	let vegetableComment = "That would make a good tea sandwich."
+	case let x where x.hasSuffix("pepper"):
+        	let vegetableComment = "Is it a spicy \(x) ?"
+    	default:
+        	let vegetableComment = "Everything tates good in soup."
+	}
+
+执行switch匹配的条件的语句之后程序将会从Switch中跳出。执行语句不会继续运行下一个case，在每条case语句之后不必写出break语句。
+
+你可以通过在 `for-in` 中提供一对名字来表示每对 key-value 来迭代访问 Dictionary中的每一个元素。 
+
+	let interestingNumbers = [
+    
+    	"Prime": [ 2 ,3, 5 ,7 ,11 ,13],
+    	"Fibonacci":[1, 1, 2, 3, 5, 8],
+    	"Square":[1, 4, 9, 16, 25],
+    
+	]
+
+	var largest = 0
+
+	for (kind, numbers) in interestingNumbers {
+    
+   		for number in numbers {
+        
+        	if number > largest {
+            
+            	largest = number
+        	}
+    	}
+	}
+
 
 
 
