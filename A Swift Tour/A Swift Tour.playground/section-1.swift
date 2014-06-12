@@ -261,3 +261,140 @@ numbers.map({
     return result
     })
 
+numbers.map(
+    {
+        number in 3 * number
+    })
+
+sort([1, 5, 3, 12, 2]) { $0 > $1 }
+
+
+//对象和类
+class NamedShape {
+    
+    var numberOfSides:Int = 0
+    var name:String
+    
+    func simpleDescription() ->String {
+        
+        return "A shape with \(numberOfSides) sides."
+    }
+    
+    //构造
+    init(name: String) {
+        
+        self.name = name
+    }
+    
+    
+    //析构没有括号
+    deinit {
+        
+        self.name = ""
+    }
+}
+
+
+class Square : NamedShape { //subclass
+
+    var sideLength:Double
+    
+    init(sideLength:Double, name:String) { //override init
+        
+        self.sideLength = sideLength
+        super.init(name: name)              //call super init
+        numberOfSides = 4
+    }
+    
+    func area() -> Double {
+        
+        return sideLength * sideLength
+    }
+    
+    override func simpleDescription() -> String { //must override
+        
+        return "A shape with sides of length \(sideLength)."
+    }
+}
+
+
+let test = Square(sideLength:5.2, name:"my test square")
+test.area()
+test.simpleDescription()
+
+class EquilateralTriangle:NamedShape {
+    
+    var sideLength : Double = 0.0
+    
+    init(sideLength :Double , name:String ) {
+        
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3               //super class property
+    }
+    
+    var perimeter: Double {
+    get {
+        
+        return 3.0 * sideLength
+    }
+    set {
+        sideLength = newValue / 3.0   //newValue 隐式名称
+    }
+    
+    }
+    
+    override func simpleDescription() -> String {
+        
+        return "equilateral triangle with sides of length \(sideLength)."
+    }
+}
+
+var triangle = EquilateralTriangle(sideLength:3.1, name:"a triangle")
+triangle.perimeter
+
+triangle.perimeter = 9.9
+triangle.sideLength
+
+
+//willSet didSet
+
+class TriangleAndSquare
+{
+    var triangle :EquilateralTriangle
+    {
+    willSet {
+        
+        square.sideLength = newValue.sideLength
+    }
+    
+    }
+    
+    var square:Square {
+    
+    willSet {
+        
+        triangle.sideLength = newValue.sideLength
+    }
+        
+    didSet{
+    
+    }
+    }
+    
+    init(size:Double, name:String){ //必须要初始化？
+        
+        square = Square(sideLength:size, name:name)
+        triangle = EquilateralTriangle(sideLength:size, name:name)
+    }
+}
+
+var triangleAndSquare = TriangleAndSquare(size:10, name:"another test shape")
+triangleAndSquare.square.sideLength
+triangleAndSquare.triangle.sideLength
+
+triangleAndSquare.square = Square(sideLength:50, name:"larger square")
+triangleAndSquare.triangle.sideLength
+
+
+
