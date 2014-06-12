@@ -127,3 +127,137 @@ for (kind, numbers) in interestingNumbers {
         }
     }
 }
+
+var n = 2
+
+while n < 100 {
+    
+    n = n*2
+}
+
+n = 2
+
+do {
+
+    n = n*2
+}while n < 100
+
+//..
+
+var firstForLoop = 0
+
+for i in 0..3 {
+    
+    firstForLoop += i
+}
+
+firstForLoop
+
+var secondForLoop = 0
+
+for i in 0...3
+{
+    secondForLoop += i
+}
+
+secondForLoop
+
+//fuction
+
+func greet(name:String, day:String) -> String {
+    
+    return "Hello \(name), today is \(day)"
+}
+
+greet("Bob", "Tuesday")
+
+//tuple
+
+func getGasPrices() ->(Double, Double, Double){
+    
+    return (3.569, 3.69, 3.79)
+}
+
+getGasPrices()
+
+//可变参数
+
+func sumOf(numbers:Int ...) -> Int {
+    
+    var sum = 0
+    
+    for number in numbers {
+        
+        sum += number
+    }
+    
+    return sum
+}
+
+sumOf(42, 597, 12)
+
+
+//函数嵌套
+
+func retunrnFifteen() -> Int {
+    
+    var  y = 10
+    func add() {
+        
+        y += 5
+    }
+    
+    add()
+    
+    return y
+}
+
+retunrnFifteen()
+
+//add() //嵌套函数的作用范围是有限的
+
+//函数作为返回值
+func makeIncrementer() -> (Int -> Int) {
+    
+    func addOne(number:Int) ->Int {
+        
+        return number + 1
+    }
+    
+    return addOne //返回的是函数的名字
+}
+
+var increment = makeIncrementer()
+
+increment(7)
+
+//一个函数可以作为另一个函数的参数
+func hasAnyMatches(list:Int[], condition:Int -> Bool) -> Bool {
+    
+    for item in list {
+        
+        if condition(item) {
+            return true
+        }
+    }
+    
+    return false
+}
+
+func lessThanTen(number:Int) ->Bool {
+    
+    return number < 10
+}
+
+var numbers = [20, 19, 7, 12]
+
+hasAnyMatches(numbers, lessThanTen)
+
+//cosure
+//没看懂     func map<U>(transform: (T) -> U) -> U[]
+numbers.map({
+    (number: Int) -> Int in
+    let result = 3 * number
+    return result
+    })
+
