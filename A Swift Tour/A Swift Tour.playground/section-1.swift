@@ -358,7 +358,7 @@ triangle.sideLength
 
 
 //willSet didSet
-
+//如果你不需要计算出一个属性的值，但需要确保一些代码在设定一个新值之前或之后运行，使用 willSet 和 didSet。比如，下面的类会确保它的三角形的边长总是和它的方形的边长相等。
 class TriangleAndSquare
 {
     var triangle :EquilateralTriangle
@@ -371,6 +371,7 @@ class TriangleAndSquare
     }
     
     var square:Square {
+
     
     willSet {
         
@@ -396,5 +397,127 @@ triangleAndSquare.triangle.sideLength
 triangleAndSquare.square = Square(sideLength:50, name:"larger square")
 triangleAndSquare.triangle.sideLength
 
+//?
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
 
+
+//enum
+
+enum Rank:Int {
+
+    case Ace = 1
+    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+    case Jak, Queen, King
+
+    func simpleDescription() -> String {
+        
+        switch self {
+            
+        case .Ace:
+            return "ace"
+        case .Two:
+            return "Two"
+        case .Three:
+            return "Three"
+        case .Four:
+            return "Four"
+        case .Five:
+            return "Five"
+        case .Six:
+            return "Six"
+        case .Seven:
+            return "Seven"
+        case .Eight:
+            return "Eight"
+        case .Nine:
+            return "Nine"
+        case Ten:
+            return "Ten"
+        case Jak:
+            return "Jak"
+        case Queen:
+            return "Queen"
+            default:
+                return String(self.toRaw())
+        }
+    }
+}
+
+let ace = Rank.Ace
+let two = Rank.Two
+let king = Rank.King
+var rank:Rank?
+
+//raw
+
+let aceRawValue = ace.toRaw()
+let twoRawValue = two.toRaw()
+
+two.simpleDescription()
+king.simpleDescription()
+rank?.simpleDescription()
+
+func rankComplar(rank1:Rank, rank2:Rank) -> Bool {
+    
+    if rank1.toRaw() > rank2.toRaw() {
+        
+        return true
+    }
+    
+    return false
+}
+
+rankComplar(ace, two)
+
+//转换
+if let convertedRank = Rank.fromRaw(50) {
+    
+    let threeDescription = convertedRank.simpleDescription()
+}
+
+enum Suit {
+    case Spades, Hearts, Diamonds, Clubs
+    func simpleDescription() -> String {
+        switch self {
+        case .Spades:
+            return "spades"
+        case .Hearts:
+            return "hearts"
+        case .Diamonds:
+            return "diamonds"
+        case .Clubs:
+            return "clubs"
+        }
+    }
+    
+    func color() -> String {
+        
+        switch self {
+            
+        case .Spades , .Hearts :
+            return "black"
+        case .Diamonds, .Clubs :
+            return "red"
+        }
+    }
+}
+
+let hearts = Suit.Hearts
+let heartsDescription = hearts.simpleDescription()
+let color = hearts.color()
+
+
+struct Card {
+    
+    var rank:Rank
+    var suit:Suit
+    
+    func simpleDescription() -> String {
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+
+//可以省略
+let threeOfSpades = Card(rank:.Three , suit:.Spades)
 
