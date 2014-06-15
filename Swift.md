@@ -48,4 +48,5 @@
 *	Class 中的set 是否能跟 willSet didSet 同时出现？为什么
 *	enum  中case的意义是什么
 *	范型中的关键字 :Sequence .GeneratorType.Element :Equatable 是协议么 T.GeneratorType.Element == U.GeneratorType.Element 是==的重载么？
+*	Swift中的 隐式解析可选感觉十分鸡肋，如果设置成为隐式解析可选还不能nil的话跟使用普通变量有什么区别呢？
 
