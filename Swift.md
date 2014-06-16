@@ -12,6 +12,8 @@
 #####String
 *	object 转换为 string String(object)
 *	objcet 格式化在 string中 let stringObject = "string object convert \(object)"
+*	hasPrefix() hasSuffix() 不接受Character 方法
+*	uppercaseString lowercaseString 属性
 
 #####Struct
 结构支持类的很多行为和特性，包括方法、构造方法等等。结构和类的最重要差别之一是当结构在程序中传递时总是被复制，而类被传递时总是按引用传递。
@@ -53,4 +55,5 @@
 *	typealias 只能定义类型的别名吗？
 *	Swift 中字符串的长度 与 NSString 的字符串长度 utf16count
 *	常量状态下的数组大小不可变值可变？
+*	let yenSign: Character = "$" 为什么输出是枚举
 
