@@ -35,8 +35,11 @@
 可以扩展协议、属性、方法 
 
 #####泛型
+*	范型可以应用于函数，方法，类，枚举，结构。
+*	用where作为范型约束
 
-
+#####数组
+用+=操作就可以添加新成员
 
 #####疑问
 *	是否在任何已经知道值的类型时都可以使用这种缩略形式。例:.Three
@@ -44,4 +47,10 @@
 *	Class 中的属性是否必须在构造中必须初始化或必须初始化？
 *	Class 中的set 是否能跟 willSet didSet 同时出现？为什么
 *	enum  中case的意义是什么
+*	范型中的关键字 :Sequence .GeneratorType.Element :Equatable 是协议么 T.GeneratorType.Element == U.GeneratorType.Element 是==的重载么？
+*	Swift中的 隐式解析可选感觉十分鸡肋，如果设置成为隐式解析可选还不能nil的话跟使用普通变量有什么区别呢？
+*	16进制中如果出现 0x0e2是按照什么规则计算的?
+*	typealias 只能定义类型的别名吗？
+*	Swift 中字符串的长度 与 NSString 的字符串长度 utf16count
+*	常量状态下的数组大小不可变值可变？
 

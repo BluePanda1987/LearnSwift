@@ -608,12 +608,12 @@ intValue
 let protocoValue: ExampleProtocol = a
 protocoValue.simpleDescription
 
-func repeat<ItemType>(item:ItemType, times:Int) ->ItemType[] {
+//范型
+func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
     
     var result = ItemType[]()
     
     for i in 0..times {
-        
         result += item
     }
     
@@ -622,13 +622,26 @@ func repeat<ItemType>(item:ItemType, times:Int) ->ItemType[] {
 
 repeat("knock", 4)
 
-
 // Reimplement the Swift standard library's optional type
 enum OptionalValue<T> {
     case None
     case Some(T)
     case Any
+    //不知道是否可以添加一个不同名称的元素,playground一直崩溃
 }
 var possibleInteger: OptionalValue<Int> = .None
 possibleInteger = .Some(100)
 
+func anyCommonElements <T, U where T: Sequence, U: Sequence, T.GeneratorType.Element: Equatable, T.GeneratorType.Element == U.GeneratorType.Element> (lhs: T, rhs: U) -> Bool {
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+anyCommonElements([1, 2, 3], [3])
+
+anyCommonElements(["hello", 2, 3], ["world", 2.0])
