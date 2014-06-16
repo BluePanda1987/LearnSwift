@@ -476,6 +476,7 @@ if let convertedRank = Rank.fromRaw(50) {
     let threeDescription = convertedRank.simpleDescription()
 }
 
+//枚举可以是字符串和浮点数
 enum Suit {
     case Spades, Hearts, Diamonds, Clubs
     func simpleDescription() -> String {
@@ -521,6 +522,92 @@ struct Card {
 //可以省略
 let threeOfSpades = Card(rank:.Three , suit:.Spades)
 
+enum ServerResponse {
+    //类型可以是元组？
+    //case 的意义是什么
+    case Result(String, String)
+    case Error(String), Test_1(String, Int)
+    case Test_2(Float)
+}
+
+let success = ServerResponse.Result("6:00 am", "8:09 pm")
+let failure = ServerResponse.Error("Out of cheese.")
+let enum_Test_1 = ServerResponse.Test_1("test", 10)
+let enum_Test_2 = ServerResponse.Test_2(20.0)
+
+switch success {
+case let .Result(sunrise, sunset):
+    let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
+case let .Error(error):
+    let serverResponse = "Failure...  \(error)"
+default:
+    let serverResponse = "Sucess."
+}
+
+//protocol
+protocol ExampleProtocol {
+    
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+
+class SimpleClass: ExampleProtocol {
+    
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+
+struct SimpleStructure: ExampleProtocol {
+    
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+    
+//没有mutating关键字不允许改变结构
+//    func adjustTest() {
+//        simpleDescription = " (adjusted)"
+//    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+    return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+    
+    mutating func test()
+    {
+        self += 52
+    }
+}
+
+7.simpleDescription
+
+var intValue = 10
+intValue.simpleDescription
+intValue.adjust()
+intValue.test()
+intValue
+
+
+let protocoValue: ExampleProtocol = a
+protocoValue.simpleDescription
+
 //范型
 func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
     
@@ -534,15 +621,16 @@ func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
 }
 
 repeat("knock", 4)
+
 // Reimplement the Swift standard library's optional type
 enum OptionalValue<T> {
     case None
     case Some(T)
+    case Any
     //不知道是否可以添加一个不同名称的元素,playground一直崩溃
 }
 var possibleInteger: OptionalValue<Int> = .None
 possibleInteger = .Some(100)
-
 
 func anyCommonElements <T, U where T: Sequence, U: Sequence, T.GeneratorType.Element: Equatable, T.GeneratorType.Element == U.GeneratorType.Element> (lhs: T, rhs: U) -> Bool {
     for lhsItem in lhs {
