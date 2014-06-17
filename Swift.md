@@ -33,15 +33,30 @@
 *	在你操作协议类型的值时，协议之外的方法是不可用的。
 *	协议可以应用给枚举
 
-#####	
+#####extension	
 可以扩展协议、属性、方法 
+
 
 #####泛型
 *	范型可以应用于函数，方法，类，枚举，结构。
 *	用where作为范型约束
 
-#####数组
-用+=操作就可以添加新成员
+#####Collection
+######Array
+*	定义 `var array = []` `var array:Type[] = []` `var array = [object1, object2, object3 ...]` `var array = Array()`
+*	数量`count`属性
+*	增:`append(object)`方法、`+=`重载
+*	删:`removeAtIndex(index)``removeLast()`
+*	改: `array[index] = newValue` `array[index_1 .. index2] = [value1, value2]`后面元素多时会插入后面元素之前 `array[index_1 ... index2] = [value1, value2]` 后面元素多时会覆盖数组后面的元素 `insert(value, atIndex)`
+*	查: `for object in array` `for (index, object) in enumerate(array)`
+
+######Dictionary
+*	定义` var dictionary = [:]` `var dictionary<KeyType : ValueType> = [:]` `var dictionary = [key1:value1, key2:value2, ...]` `var dictionary = Dictionary()`
+*	数量 `count`属性
+*	增: `dictionary[key] = value`
+*	删: `dicitionary[key] = nil` `dicitionay.removeValueForKey[key]`
+*	改: `dictionary[key] = value` `dictionary.updateValue(newValue, forKey:key)`
+*	查: `for (key, value) in dictionary` `for key in dictionary.keys` `for value in dictionary.values` `Array(dictionary.keys)` `Array(dictionary.values)` 
 
 #####疑问
 *	是否在任何已经知道值的类型时都可以使用这种缩略形式。例:.Three
@@ -56,4 +71,9 @@
 *	Swift 中字符串的长度 与 NSString 的字符串长度 utf16count
 *	常量状态下的数组大小不可变值可变？
 *	let yenSign: Character = "$" 为什么输出是枚举
+
+
+####单词
+`extension` `protocol` `Character` `Integer` `enumerate`
+
 

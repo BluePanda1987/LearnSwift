@@ -6,6 +6,7 @@ var str = "Hello, playground"
 
 //数组
 var shoppingList:String[] = ["Eggs", "Milk"]
+var shoppingList_1:String[] = Array()
 
 //数量
 shoppingList.count
@@ -115,6 +116,8 @@ Array(airports.values)                              //建立value数组
 
 airports = [:]
 airports
+
+enumerate(airports)
 
 
 
